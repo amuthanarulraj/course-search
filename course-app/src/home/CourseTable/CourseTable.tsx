@@ -1,4 +1,11 @@
 import { ReactElement } from 'react';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 import Course from '../../models/course';
 
 type Props = {
@@ -8,28 +15,31 @@ type Props = {
 const CourseTable: React.FC<Props> = (props: Props): ReactElement => {
     const courseEntries = props.courses.map(c => {
         return (
-          <tr key={c._id}>
-            <td>{c.name}</td>
-            <td>{c.instructor}</td>
-            <td>{`${c.location.building}-${c.location.room}`}</td>
-            <td>{`${c.schedule.startTime} - ${c.schedule.endTime}`}</td>
-          </tr>
+          <TableRow
+              key={c._id}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+            <TableCell component="th" scope="row">{c.name}</TableCell>
+            <TableCell align="right">{c.instructor}</TableCell>
+            <TableCell align="right">{`${c.location.building}-${c.location.room}`}</TableCell>
+            <TableCell align="right">{`${c.schedule.startTime} - ${c.schedule.endTime}`}</TableCell>
+          </TableRow>
         )
       });
     return (
-    <table>
-        <thead>
-          <tr>
-            <th>Course Name</th>
-            <th>Instructor</th>
-            <th>Location</th>
-            <th>Schedule</th>
-          </tr>
-        </thead>
-        <tbody>
-          {courseEntries}
-        </tbody>
-    </table>
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Course Name</TableCell>
+            <TableCell align="right">Instructor</TableCell>
+            <TableCell align="right">Location</TableCell>
+            <TableCell align="right">Schedule</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>{courseEntries}</TableBody>
+      </Table>
+    </TableContainer>
     )
 };
 export default CourseTable;

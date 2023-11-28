@@ -1,19 +1,22 @@
-import { ReactElement, useRef } from "react";
+import { ReactElement, useState } from "react";
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+
 
 type Props = {
     onSearch: (query: string) => void
 }
 
 export default (props: Props): ReactElement => {
-    const inputRef = useRef<HTMLInputElement>(null);
+    const [value, setValue] = useState('');
     const search = () => {
-        const query = inputRef.current?.value;
-        props.onSearch(query as string);
+        props.onSearch(value);
     }
     return (
-        <div>
-            <input ref={inputRef} type="text"></input>
-            <button type="submit" onClick={search}>Search</button>
-        </div>
+        <Container sx={{ mb: 2 }}>
+            <TextField variant="outlined" size="small" sx={{ mr: 1 }} onChange={(e) => setValue(e.target.value)}></TextField>
+            <Button variant="contained" onClick={search}>Search</Button>
+        </Container>
     );
 }
