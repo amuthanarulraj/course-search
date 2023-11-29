@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 
@@ -8,15 +9,17 @@ import * as courseService from './services/course-service';
 import CourseTable from './home/CourseTable/CourseTable';
 import CourseSearch from './home/CourseSearch/CourseSearch';
 import NavBar from './home/NavBar/NavBar';
+import { loadCourses }  from './store/slices/course-slice';
+import { AppDispatch } from './store';
 
 const initialState: Course[] = [];
 // Hook
 function App() {
-  const [courseList, setCourses] = useState(initialState);
   const [filter, setFilter] = useState('');
+  const dispatchLoadCourses = useDispatch<AppDispatch>();
   useEffect(() => {
     courseService.search()
-      .then((courses) => setCourses(courses));
+      .then((courses) => dispatchLoadCourses(loadCourses(courses)));
   }, []);
   const searchHandler = (query: string) => {
     setFilter(query);
@@ -27,7 +30,7 @@ function App() {
       <CssBaseline />
       <Container maxWidth="md" sx={{ mt: 2 }}>
         <CourseSearch onSearch={searchHandler}></CourseSearch>
-        <CourseTable courses={courseList.filter(c => c.name.startsWith(filter))}></CourseTable>
+        <CourseTable query={filter}></CourseTable>
       </Container>
     </div>
   );
