@@ -8,7 +8,7 @@ const initialize = (app) => {
     app.use(cors());
     app.use(express.json());
     app.use(express.urlencoded());
-    mongoose.connect('mongodb_connection_url');
+    mongoose.connect(process.env.MONGO_CONNECTION);
     registerRouter(app);
 }
 
