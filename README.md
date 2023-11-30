@@ -1,1 +1,6 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/4fTm2E_A)
+# Course App
+
+Please check below documentation to run the project.
+
+1. [Course API](./course-api/README.md)
+2. [Course App](./course-app/README.md)
