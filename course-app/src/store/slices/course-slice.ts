@@ -14,7 +14,7 @@ export const courseSlice = createSlice({
     }
 });
 export const { loadCourses } = courseSlice.actions;
-export const searchCourses = (query: string) => {
+export const searchCourses = (query: string): ((state: AppState) => CoursesState) => {
     return (state: AppState) => state.courses.filter(c => c.name.startsWith(query));
 }
 export default courseSlice.reducer;
