@@ -7,6 +7,6 @@ import { courseSlice } from './slices/course-slice'
     }
  });
 
- export type AppStore = typeof store;
- export type AppState = ReturnType<AppStore['getState']>;
- export type AppDispatch = typeof store.dispatch;
+export type AppStore = typeof store;
+export type AppState = ReturnType<AppStore['getState']>;
+export type AppDispatch = typeof store.dispatch;

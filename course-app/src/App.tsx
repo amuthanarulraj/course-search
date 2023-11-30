@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
-import { useDispatch } from 'react-redux';
 
 import './App.css';
-import Course from './models/course';
 import * as courseService from './services/course-service';
 import CourseTable from './home/CourseTable/CourseTable';
 import CourseSearch from './home/CourseSearch/CourseSearch';
 import NavBar from './home/NavBar/NavBar';
+import { loadCourses }  from './store/slices/course-slice';
 import { AppDispatch } from './store';
-import { loadCourses } from './store/slices/course-slice';
 
-const initialState: Course[] = [];
 // Hook
 function App() {
   const [filter, setFilter] = useState('');

@@ -8,14 +8,14 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { searchCourse } from '../../store/slices/course-slice';
+import { searchCourses }  from '../../store/slices/course-slice'
 
 type Props = {
     query: string
 }
 
 const CourseTable: React.FC<Props> = (props: Props): ReactElement => {
-  const courses = useSelector(searchCourse(props.query));
+  const courses = useSelector(searchCourses(props.query));
   const courseEntries = courses.map(c => {
       return (
         <TableRow
@@ -29,7 +29,7 @@ const CourseTable: React.FC<Props> = (props: Props): ReactElement => {
         </TableRow>
       )
     });
-    return (
+  return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
@@ -43,6 +43,6 @@ const CourseTable: React.FC<Props> = (props: Props): ReactElement => {
         <TableBody>{courseEntries}</TableBody>
       </Table>
     </TableContainer>
-    )
-};
+    );
+}
 export default CourseTable;
