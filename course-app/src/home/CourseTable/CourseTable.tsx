@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -16,6 +17,7 @@ type Props = {
 
 const CourseTable: React.FC<Props> = (props: Props): ReactElement => {
   const courses = useSelector(searchCourses(props.query));
+  const { t } = useTranslation('common');
   const courseEntries = courses.map(c => {
       return (
         <TableRow
@@ -34,10 +36,10 @@ const CourseTable: React.FC<Props> = (props: Props): ReactElement => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Course Name</TableCell>
-            <TableCell align="right">Instructor</TableCell>
-            <TableCell align="right">Location</TableCell>
-            <TableCell align="right">Schedule</TableCell>
+            <TableCell>{t('course.table.course.name')}</TableCell>
+            <TableCell align="right">{t('course.table.instructor')}</TableCell>
+            <TableCell align="right">{t('course.table.location')}</TableCell>
+            <TableCell align="right">{t('course.table.schedule')}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>{courseEntries}</TableBody>
