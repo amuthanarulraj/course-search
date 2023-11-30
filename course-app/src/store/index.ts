@@ -1,8 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import coursesReducer from './slices/course-slice'
+import { courseSlice } from './slices/course-slice'
 
  export const store = configureStore({
     reducer: {
-        [coursesReducer.name]: coursesReducer
+        [courseSlice.name]: courseSlice.reducer
     }
  });
+
+ export type AppStore = typeof store;
+ export type AppState = ReturnType<AppStore['getState']>;
+ export type AppDispatch = typeof store.dispatch;

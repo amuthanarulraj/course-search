@@ -1,4 +1,6 @@
 import { ReactElement } from 'react';
+import { useSelector } from 'react-redux';
+
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -6,26 +8,27 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Course from '../../models/course';
+import { searchCourse } from '../../store/slices/course-slice';
 
 type Props = {
-    courses: Course[]
+    query: string
 }
 
 const CourseTable: React.FC<Props> = (props: Props): ReactElement => {
-    const courseEntries = props.courses.map(c => {
-        return (
-          <TableRow
-              key={c._id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-            <TableCell component="th" scope="row">{c.name}</TableCell>
-            <TableCell align="right">{c.instructor}</TableCell>
-            <TableCell align="right">{`${c.location.building}-${c.location.room}`}</TableCell>
-            <TableCell align="right">{`${c.schedule.startTime} - ${c.schedule.endTime}`}</TableCell>
-          </TableRow>
-        )
-      });
+  const courses = useSelector(searchCourse(props.query));
+  const courseEntries = courses.map(c => {
+      return (
+        <TableRow
+            key={c._id}
+            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+          >
+          <TableCell component="th" scope="row">{c.name}</TableCell>
+          <TableCell align="right">{c.instructor}</TableCell>
+          <TableCell align="right">{`${c.location.building}-${c.location.room}`}</TableCell>
+          <TableCell align="right">{`${c.schedule.startTime} - ${c.schedule.endTime}`}</TableCell>
+        </TableRow>
+      )
+    });
     return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
