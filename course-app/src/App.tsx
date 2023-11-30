@@ -14,10 +14,10 @@ import { AppDispatch } from './store';
 // Hook
 function App() {
   const [filter, setFilter] = useState('');
-  const dispatchLoadCourses = useDispatch<AppDispatch>();
+  const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     courseService.search()
-      .then((courses) => dispatchLoadCourses(loadCourses(courses)));
+      .then((courses) => dispatch(loadCourses(courses)));
   }, []);
   const searchHandler = (query: string) => {
     setFilter(query);
