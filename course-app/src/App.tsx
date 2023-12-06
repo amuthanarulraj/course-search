@@ -23,14 +23,13 @@ function App() {
     setFilter(query);
   }
   return (
-    <div>
-      <NavBar></NavBar>
+    <>
       <CssBaseline />
       <Container maxWidth="md" sx={{ mt: 2 }}>
         <CourseSearch onSearch={searchHandler}></CourseSearch>
         <CourseTable query={filter}></CourseTable>
       </Container>
-    </div>
+    </>
   );
 }
 

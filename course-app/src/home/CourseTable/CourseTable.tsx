@@ -8,6 +8,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import { useNavigate } from 'react-router-dom';
 import Paper from '@mui/material/Paper';
 import { searchCourses }  from '../../store/slices/course-slice'
 
@@ -18,11 +19,13 @@ type Props = {
 const CourseTable: React.FC<Props> = (props: Props): ReactElement => {
   const courses = useSelector(searchCourses(props.query));
   const { t } = useTranslation('common');
+  const navigate = useNavigate();
   const courseEntries = courses.map(c => {
       return (
         <TableRow
             key={c._id}
-            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            sx={{ '&:last-child td, &:last-child th': { border: 0 }, 'cursor': 'pointer' }}
+            onClick={() => navigate(`courses/${c._id}`)}
           >
           <TableCell component="th" scope="row">{c.name}</TableCell>
           <TableCell align="right">{c.instructor}</TableCell>
