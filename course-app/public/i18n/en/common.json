@@ -2,6 +2,7 @@
     "title": "Course App",
     "login.button.label": "Login",
     "search.button.label": "Search",
+    "back.button.label": "Back",
     "course.table.course.name": "Course Name",
     "course.table.instructor": "Instructor",
     "course.table.location": "Location",

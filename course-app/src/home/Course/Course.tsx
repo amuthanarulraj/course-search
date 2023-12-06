@@ -25,7 +25,7 @@ export default () => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small" onClick={() => navigate(-1)}>Back</Button>
+                <Button size="small" onClick={() => navigate(-1)}>{t('back.button.label')}</Button>
             </CardActions>
         </Card>
     );
