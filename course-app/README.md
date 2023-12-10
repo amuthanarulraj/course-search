@@ -8,6 +8,15 @@ A simple demo react app for managing courses.
 2. Run `npm start`.
 3. The Course App should be accessible at `http://localhost:3000`.
 
+### Run with PWA
+
+For PWA to work follow below instructions.
+
+1. Run `npm i`.
+2. Run `npm run build`.
+3. Run `npm server -s build`.
+4. The Course App should be accessible at `http://localhost:3000`.
+
 ## Available Scripts
 
 In the project directory, you can run:

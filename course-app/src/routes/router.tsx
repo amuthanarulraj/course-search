@@ -6,11 +6,6 @@ import Course from '../home/Course/Course';
 
 export default createBrowserRouter([
     {
-        path: '/service-worker.js',
-        loader: () => redirectDocument("/service-worker.js")
-
-    },
-    {
         path: '/',
         element: <Root />,
         errorElement: <PageError />,
