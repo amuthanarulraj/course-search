@@ -4,6 +4,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 const app = express();
-const port = process.env.SERVER_PORT;
+const port = process.env.SERVER_PORT || 3000;
 initialize(app);
 app.listen(port, () => console.log(`Server is listening at port ${port}`));
