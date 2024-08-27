@@ -1,0 +1,36 @@
+name: Course Search API Deployment
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'course-api/**'
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+          lfs: false
+      - name: Set up working directory
+        run: cd course-api
+      - name: Build and push to ${{ env.ACR_URL }} registry
+        env:
+          ENVIRONMENT: dev
+          ACR_URL: ${{ env.ACR_URL }}
+          ACR_NAMESPACE: ${{ secrets.ACR_NAMESPACE }}
+          ACR_USERNAME: ${{ secrets.ACR_USERNAME }}
+          ACR_PASSWORD: ${{ secrets.ACR_PASSWORD }}
+        uses: sclorg/build-and-push-action@v2
+        with:
+          registry: ${{ env.ACR_URL }}
+          registry_namespace: ${{ env.ACR_NAMESPACE }}
+          registry_username: ${{ secrets.ACR_USERNAME }}
+          registry_token: ${{ secrets.ACR_PASSWORD }}
+          dockerfile: "Dockerfile"
+          image_name: "course-api:1.0.0"
+          tag: "tag"
+          archs: "amd64, s390x"
