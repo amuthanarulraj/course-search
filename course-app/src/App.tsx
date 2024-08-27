@@ -7,7 +7,6 @@ import './App.css';
 import * as courseService from './services/course-service';
 import CourseTable from './home/CourseTable/CourseTable';
 import CourseSearch from './home/CourseSearch/CourseSearch';
-import NavBar from './home/NavBar/NavBar';
 import { loadCourses }  from './store/slices/course-slice';
 import { AppDispatch } from './store';
 
