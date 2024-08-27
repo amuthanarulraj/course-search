@@ -14,3 +14,4 @@ A simple demo REST API for managing courses.
 2. Run `npm i`.
 3. Run `npm start`.
 4. The Course REST API should be accessible at `http://localhost:3002/courses`. Use HTTP clients like [httpie](https://httpie.io/) for accessing the API.
+
