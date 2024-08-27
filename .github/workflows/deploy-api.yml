@@ -16,7 +16,7 @@ jobs:
           submodules: true
           lfs: false
       - name: Set up working directory
-        run: cd course-api
+        run: pwd; cd course-api
       - name: Build and push to ${{ env.ACR_URL }} registry
         env:
           ENVIRONMENT: dev
