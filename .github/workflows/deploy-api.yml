@@ -42,7 +42,7 @@ jobs:
         uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-          
+
       - name: Azure CLI script
         uses: azure/cli@v2
         with:
@@ -51,23 +51,12 @@ jobs:
             az account show
       
       - name: 'Build and push image'
-        uses: azure/docker-login@v1
+        uses: azure/docker-login@v2
         with:
           login-server: ${{ env.ACR_URL }}
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
 
       - run: |
-          docker build . -t ${{ env.ACR_URL }}/coursesearchapi:${{ github.sha }}
-          docker push ${{ env.ACR_URL }}/coursesearchapi:${{ github.sha }}
-
-      - name: 'Deploy to Azure Container Instances'
-        uses: 'azure/aci-deploy@v1'
-        with:
-          # resource-group: ${{ secrets.RESOURCE_GROUP }}
-          # dns-name-label: ${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}
-          image: ${{ env.ACR_URL }}/coursesearchapi:${{ github.sha }}
-          registry-login-server: ${{ env.ACR_URL }}
-          registry-username: ${{ secrets.ACR_USERNAME }}
-          registry-password: ${{ secrets.ACR_PASSWORD }}
-          name: coursesearchapi
+          docker build . -t ${{ env.ACR_URL }}/coursesearchapi:${{ github.sha }} -t${{ env.ACR_URL }}/coursesearchapi:latest
+          docker image push --all-tags ${{ env.ACR_URL }}/coursesearchapi
