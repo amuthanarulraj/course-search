@@ -15,12 +15,6 @@ jobs:
 
       - name: 'Checkout GitHub Action'
         uses: actions/checkout@main
-      
-      - name: Set up working directory
-        run: |
-          pwd 
-          cd course-api; 
-          pwd
 
       - name: 'Login via Azure CLI'
         uses: azure/login@v2
@@ -42,6 +36,7 @@ jobs:
           password: ${{ secrets.ACR_PASSWORD }}
 
       - name: 'Build and push image'
+        working-directory: ./course-api
         run: |
           docker build . -t ${{ vars.ACR_URL }}/coursesearchapi:${{ github.sha }} -t${{ vars.ACR_URL }}/coursesearchapi:latest
           docker image push --all-tags ${{ vars.ACR_URL }}/coursesearchapi
