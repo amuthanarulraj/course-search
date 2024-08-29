@@ -51,17 +51,18 @@ jobs:
           inlineScript: |
             az account show
       
-      - name: 'Build and push image'
+      - name: 'ACR Login'
         uses: azure/docker-login@v2
         with:
-          login-server: ${{ env.ACR_URL }}
+          login-server: ${{ vars.ACR_URL }}
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
 
-      - run: |
-          docker build . -t ${{ env.ACR_URL }}/coursesearchapi:${{ github.sha }} -t${{ env.ACR_URL }}/coursesearchapi:latest
-          docker image push --all-tags ${{ env.ACR_URL }}/coursesearchapi
+      - name: 'Build and push image'
+        run: |
+          docker build . -t ${{ vars.ACR_URL }}/coursesearchapi:${{ github.sha }} -t${{ vars.ACR_URL }}/coursesearchapi:latest
+          docker image push --all-tags ${{ vars.ACR_URL }}/coursesearchapi
       
-      - name: logout
+      - name: 'Logout via Azure CLI'
         run: |
           az logout
