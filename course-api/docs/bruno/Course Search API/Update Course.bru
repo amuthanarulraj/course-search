@@ -1,0 +1,26 @@
+meta {
+  name: Update Course
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:3000/courses/66d0868be0425450d041cf0e
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "INFO 6100",
+    "instructor": "Kal Bugrara",
+    "location": {
+      "room": "105",
+      "building": "ISEC"
+    },
+    "schedule": {
+      "startTime": "Wed 6:10 PM",
+      "endTime": "Wed 9:40 PM"
+    }
+  }
+}

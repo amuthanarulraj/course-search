@@ -13,6 +13,8 @@ services:
       context: .
     environment:
       NODE_ENV: production
+      SERVER_PORT: 3000
+      MONGO_CONNECTION: 
     ports:
       - 3000:3000
 

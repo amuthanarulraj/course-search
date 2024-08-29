@@ -1,0 +1,26 @@
+meta {
+  name: Create Course
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:3000/courses
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "INFO 6125",
+    "instructor": "Yusuf Ozbek",
+    "location": {
+      "room": "100",
+      "building": "Dodge Hall"
+    },
+    "schedule": {
+      "startTime": "Thur 6:10 PM",
+      "endTime": "Thur 9:40 PM"
+    }
+  }
+}
