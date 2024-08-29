@@ -17,7 +17,10 @@ jobs:
         uses: actions/checkout@main
       
       - name: Set up working directory
-        run: pwd; cd course-api
+        run: |
+          pwd 
+          cd course-api; 
+          pwd
 
       - name: 'Login via Azure CLI'
         uses: azure/login@v2
