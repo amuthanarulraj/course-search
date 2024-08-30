@@ -28,7 +28,7 @@ export default () => {
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           {t('title')}
         </Typography>
-        <Button color="inherit" onClick={() => navigate(`/login`)}>{t('login.button.label')}</Button>
+        <Button color="inherit" onClick={() => navigate(`/.auth/login/aad`)}>{t('login.button.label')}</Button>
       </Toolbar>
     </AppBar>
   </Box>
